@@ -1,21 +1,22 @@
 var React = require('react');
 
-var MenuModels = require('../models/menu');
-var OrderModels = require('../models/orders');
+var menuModels = require('../models/menu');
+var orderModels = require('../models/orders');
 
 var Order = React.createClass({
   render: function(){
     var self = this;
 
     var order = this.props.orderCollection.map(function(orderItem){
-      return(
+      return (
         <li key={orderItem.cid}>
           {orderItem.get('title')} : {orderItem.get('price')}
           <button className="btn btn-danger" onClick={function(){self.props.removeItem(orderItem)}}>Remove</button>
         </li>
       );
     });
-    return(
+
+    return (
       <div className="col-md-4">
         <h1>Your Order</h1>
         <ul>
@@ -34,13 +35,14 @@ var Menu = React.createClass({
   render: function(){
     var self = this;
     var menu = this.props.menuItems.map(function(menuItem){
-      return(
+      return (
         <li key={menuItem.get('title')}>
           {menuItem.get('title')} : {menuItem.get('price')}
           <button className="btn btn-success" onClick={function(){self.props.addToOrder(menuItem)}}>Add to Order</button>
         </li>
       );
     });
+
     return(
       <div className="col-md-8">
         <h1>Menu Items</h1>
@@ -54,11 +56,12 @@ var Menu = React.createClass({
 
 var OrderingContainer = React.createClass({
   getInitialState: function(){
-    var menuItems = new MenuModels.MenuCollection():
-    var orderCollection = new OrderModels.OrderItemCollection();
+    var menuItems = new menuModels.MenuCollection();
+    var orderCollection = new orderModels.OrderItemCollection();
 
     var orderData = JSON.parse(localStorage.getItem('order'));
     orderCollection.add(orderData);
+    orderCollection.fetch();
 
     menuItems.add([
       {title: 'Fried Spring Roll', price: '1.95'},
@@ -68,6 +71,7 @@ var OrderingContainer = React.createClass({
       {title: 'Tom Kha Gai (Coconut Chicken)', price: '5.25'},
       {title: 'Fried Rice', price: '8.95'}
     ]);
+
     return{
       menuItems: menuItems,
       orderCollection: orderCollection
