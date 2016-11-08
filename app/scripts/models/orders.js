@@ -7,7 +7,8 @@ var OrderItem = Backbone.Model.extend({
 
 var OrderItemCollection = Backbone.Collection.extend({
   model: OrderItem,
-  localStorage: new Backbone.LocalStorage('order'), 
+  localStorage: new Backbone.LocalStorage('order'),
+  
   total: function(){
     return this.reduce(function(sum, model){
       return sum + parseFloat(model.get('price'));

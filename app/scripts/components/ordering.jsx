@@ -107,7 +107,7 @@ var OrderingContainer = React.createClass({
     this.setState({orderCollection: new orderModels.OrderItemCollection});
   },
   render: function(){
-    return(
+    return (
       <div className="row">
         <Menu addToOrder={this.addToOrder} menuItems={this.state.menuItems}/>
         <Order placeOrder={this.placeOrder} removeItem={this.removeItem} orderCollection={this.state.orderCollection}/>
