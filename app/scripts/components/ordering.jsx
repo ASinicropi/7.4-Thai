@@ -1,7 +1,12 @@
 var React = require('react');
+var Backbone = require('backbone');
 
-var menuModels = require('../models/menu');
-var orderModels = require('../models/orders');
+var menuModel = require('../models/menu');
+var orderModel = require('../models/orders');
+
+var MenuCollection = require('../models/menu').MenuCollection;
+var OrderCollection = require('../models/orders').OrderCollection;
+var OrderItemCollection = require('../models/orders').OrderItemCollection;
 
 var Order = React.createClass({
   render: function(){
@@ -56,8 +61,8 @@ var Menu = React.createClass({
 
 var OrderingContainer = React.createClass({
   getInitialState: function(){
-    var menuItems = new menuModels.MenuCollection();
-    var orderCollection = new orderModels.OrderItemCollection();
+    var menuItems = new menuModel.MenuCollection();
+    var orderCollection = new orderModel.OrderItemCollection();
 
     menuItems.add([
       {title: 'Fried Spring Roll', price: '1.95'},
@@ -93,13 +98,14 @@ var OrderingContainer = React.createClass({
     var orderCollection = this.state.orderCollection;
   },
   placeOrder: function(){
-    var newOrder = new orderModels.Order();
+    var newOrder = new orderModel.Order();
     var orderCollection = this.state.orderCollection;
 
     newOrder.set({items: orderCollection.toJSON()});
 
-    this.setState({orderCollection: new orderModels.OrderItemCollection});
+    this.setState({orderCollection: new orderModel.OrderItemCollection});
   },
+
   render: function(){
     return (
       <div className="row">
