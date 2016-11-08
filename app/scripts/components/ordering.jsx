@@ -43,7 +43,7 @@ var Menu = React.createClass({
       );
     });
 
-    return(
+    return (
       <div className="col-md-8">
         <h1>Menu Items</h1>
         <ul>
@@ -75,9 +75,9 @@ var OrderingContainer = React.createClass({
   },
   addToOrder: function(menuItem){
     var orderCollection = this.state.orderCollection;
-    var orderItemData = menuItem.toJSON();
+    var orderItemData = menuItem;
 
-    delete orderItemData.cid;
+    delete orderItemData.id;
     orderCollection.add([orderItemData]);
     this.updateOrder();
 
@@ -91,8 +91,6 @@ var OrderingContainer = React.createClass({
   },
   updateOrder: function(){
     var orderCollection = this.state.orderCollection;
-    var orderData = JSON.stringify(orderCollection.toJSON());
-    localStorage.setItem('order', orderData);
   },
   placeOrder: function(){
     var newOrder = new orderModels.Order();
