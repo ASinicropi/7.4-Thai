@@ -1,7 +1,7 @@
 var React = require('react');
 
 var MenuModels = require('../models/menu');
-var OrderModels = require('../models.orders');
+var OrderModels = require('../models/orders');
 
 var Order = React.createClass({
   render: function(){
