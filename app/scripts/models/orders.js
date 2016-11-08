@@ -14,7 +14,7 @@ var OrderItemCollection = Backbone.Collection.extend({
 });
 
 var Order = Backbone.Model.extend({
-  idAttribute: '_id'
+  idAttribute: '_id',
   urlRoot: 'https://tiny-lasagna-server.herokuapp.com/collections/majesticthaiorders'
 });
 
