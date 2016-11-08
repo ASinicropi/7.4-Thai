@@ -59,10 +59,6 @@ var OrderingContainer = React.createClass({
     var menuItems = new menuModels.MenuCollection();
     var orderCollection = new orderModels.OrderItemCollection();
 
-    var orderData = JSON.parse(localStorage.getItem('order'));
-    orderCollection.add(orderData);
-    orderCollection.fetch();
-
     menuItems.add([
       {title: 'Fried Spring Roll', price: '1.95'},
       {title: 'Chicken Satay', price: '5.50'},
